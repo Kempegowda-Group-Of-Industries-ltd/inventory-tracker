@@ -426,3 +426,19 @@ chart = (
 
 st.altair_chart(chart, use_container_width=True)
 
+
+# Add a profit margin column
+df["profit_margin"] = (df["price"] - df["cost_price"]) / df["cost_price"] * 100
+
+st.subheader("Profit Margin by Product (%)", divider="purple")
+st.altair_chart(
+    alt.Chart(df)
+    .mark_bar(color="green")
+    .encode(
+        y=alt.Y("item_name", title="Product").sort("-x"),
+        x=alt.X("profit_margin", title="Profit Margin (%)"),
+        tooltip=["item_name", "profit_margin"]
+    ),
+    use_container_width=True,
+)
+
