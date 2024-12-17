@@ -448,3 +448,15 @@ st.altair_chart(
     use_container_width=True,
 )
 
+import plotly.express as px
+
+st.subheader("Sales Distribution by Product", divider="orange")
+
+fig = px.pie(
+    df,
+    values="units_sold",
+    names="item_name",
+    title="Share of Total Sales by Product",
+    hole=0.4,  # Creates a donut chart
+)
+st.plotly_chart(fig, use_container_width=True)
