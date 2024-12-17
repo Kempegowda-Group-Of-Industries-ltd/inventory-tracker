@@ -336,10 +336,7 @@ scatter_plot = (
 )
 st.altair_chart(scatter_plot, use_container_width=True)
 
-# HEATMAP: Correlation between numerical columns
-st.write("### Correlation Heatmap")
-correlation_data = df.drop(columns=["id", "reorder_point", "description"]).corr()
-st.write(correlation_data.style.background_gradient(cmap="coolwarm"))
+
 
 # BOX PLOT: Distribution of Units Left
 st.write("### Units Left Distribution")
