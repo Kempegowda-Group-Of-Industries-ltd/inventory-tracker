@@ -381,3 +381,113 @@ stacked_chart = (
 )
 st.altair_chart(stacked_chart, use_container_width=True)
 
+# Calculate revenue and profit for each item
+df["revenue"] = df["units_sold"] * df["price"]
+df["profit"] = df["units_sold"] * (df["price"] - df["cost_price"])
+
+st.subheader("Revenue vs Profit", divider="green")
+st.altair_chart(
+    alt.Chart(df)
+    .mark_bar()
+    .encode(
+        y=alt.Y("item_name", title="Product").sort("-x"),
+        x="revenue",
+        color=alt.value("steelblue"),
+        tooltip=["item_name", "revenue", "profit"]
+    ) + 
+    alt.Chart(df)
+    .mark_bar()
+    .encode(
+        y="item_name",
+        x="profit",
+        color=alt.value("orange"),
+        tooltip=["item_name", "revenue", "profit"]
+    ),
+    use_container_width=True,
+)
+
+
+st.subheader("Inventory Balance: Units Sold vs Units Left", divider="blue")
+
+chart = (
+    alt.Chart(df)
+    .transform_fold(
+        ["units_sold", "units_left"],
+        as_=["Type", "Count"]
+    )
+    .mark_bar()
+    .encode(
+        x="Count:Q",
+        y=alt.Y("item_name:N", title="Product").sort("-x"),
+        color="Type:N",
+        tooltip=["item_name", "units_sold", "units_left"]
+    )
+)
+
+st.altair_chart(chart, use_container_width=True)
+
+
+# Add a profit margin column
+df["profit_margin"] = (df["price"] - df["cost_price"]) / df["cost_price"] * 100
+
+st.subheader("Profit Margin by Product (%)", divider="purple")
+st.altair_chart(
+    alt.Chart(df)
+    .mark_bar(color="green")
+    .encode(
+        y=alt.Y("item_name", title="Product").sort("-x"),
+        x=alt.X("profit_margin", title="Profit Margin (%)"),
+        tooltip=["item_name", "profit_margin"]
+    ),
+    use_container_width=True,
+)
+
+df["stock_status"] = df.apply(
+    lambda row: "Low Stock" if row["units_left"] < row["reorder_point"] else "Sufficient",
+    axis=1
+)
+
+st.subheader("Reorder Status of Inventory", divider="red")
+
+st.altair_chart(
+    alt.Chart(df)
+    .mark_bar()
+    .encode(
+        y=alt.Y("item_name", title="Product").sort("-x"),
+        x="units_left",
+        color=alt.Color("stock_status", scale=alt.Scale(domain=["Low Stock", "Sufficient"], range=["red", "green"])),
+        tooltip=["item_name", "units_left", "stock_status"]
+    ),
+    use_container_width=True,
+)
+
+
+import plotly.express as px
+
+st.subheader("Sales Distribution by Product", divider="orange")
+
+fig = px.pie(
+    df,
+    values="units_sold",
+    names="item_name",
+    title="Share of Total Sales by Product",
+    hole=0.4,  # Creates a donut chart
+)
+st.plotly_chart(fig, use_container_width=True)
+
+
+ALTER TABLE inventory ADD COLUMN date TEXT DEFAULT CURRENT_DATE;
+
+st.subheader("Daily Sales Trend", divider="green")
+
+# Assume 'date' column contains sales dates
+daily_sales = df.groupby("date").sum().reset_index()
+
+st.line_chart(daily_sales, x="date", y="units_sold", use_container_width=True)
+
+
+
+st.subheader("Inventory Aging Analysis", divider="purple")
+
+st.bar_chart(df, x="item_name", y="units_left", use_container_width=True)
+
