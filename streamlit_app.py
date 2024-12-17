@@ -463,7 +463,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 
-ALTER TABLE inventory ADD COLUMN date TEXT DEFAULT CURRENT_DATE;
+#ALTER TABLE inventory ADD COLUMN date TEXT DEFAULT CURRENT_DATE;
 
 st.subheader("Daily Sales Trend", divider="green")
 
