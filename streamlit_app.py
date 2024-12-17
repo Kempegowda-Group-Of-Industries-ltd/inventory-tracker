@@ -465,10 +465,10 @@ st.plotly_chart(fig, use_container_width=True)
 
 #ALTER TABLE inventory ADD COLUMN date TEXT DEFAULT CURRENT_DATE;
 
-st.subheader("Daily Sales Trend", divider="green")
+#st.subheader("Daily Sales Trend", divider="green")
 
 # Assume 'date' column contains sales dates
-daily_sales = df.groupby("date").sum().reset_index()
+#daily_sales = df.groupby("date").sum().reset_index()
 
-st.line_chart(daily_sales, x="date", y="units_sold", use_container_width=True)
+#st.line_chart(daily_sales, x="date", y="units_sold", use_container_width=True)
 
