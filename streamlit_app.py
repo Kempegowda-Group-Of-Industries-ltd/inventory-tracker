@@ -427,17 +427,23 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 
-# Add a profit margin column
-df["profit_margin"] = (df["price"] - df["cost_price"]) / df["cost_price"] * 100
 
-st.subheader("Profit Margin by Product (%)", divider="purple")
+
+df["stock_status"] = df.apply(
+    lambda row: "Low Stock" if row["units_left"] < row["reorder_point"] else "Sufficient",
+    axis=1
+)
+
+st.subheader("Reorder Status of Inventory", divider="red")
+
 st.altair_chart(
     alt.Chart(df)
-    .mark_bar(color="green")
+    .mark_bar()
     .encode(
         y=alt.Y("item_name", title="Product").sort("-x"),
-        x=alt.X("profit_margin", title="Profit Margin (%)"),
-        tooltip=["item_name", "profit_margin"]
+        x="units_left",
+        color=alt.Color("stock_status", scale=alt.Scale(domain=["Low Stock", "Sufficient"], range=["red", "green"])),
+        tooltip=["item_name", "units_left", "stock_status"]
     ),
     use_container_width=True,
 )
