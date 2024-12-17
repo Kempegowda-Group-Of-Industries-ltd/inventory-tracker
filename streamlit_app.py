@@ -288,3 +288,99 @@ st.altair_chart(
     ),
     use_container_width=True,
 )
+
+
+# -----------------------------------------------------------------------------
+# Additional visualizations for inventory data
+
+st.subheader("Item Category Insights", divider="blue")
+
+# PIE CHART: Proportion of Units Sold
+st.write("### Proportion of Units Sold")
+pie_chart = (
+    alt.Chart(df)
+    .mark_arc(innerRadius=50)
+    .encode(
+        theta=alt.Theta("units_sold:Q", title="Units Sold"),
+        color=alt.Color("item_name:N", legend=None),
+        tooltip=["item_name", "units_sold"]
+    )
+)
+st.altair_chart(pie_chart, use_container_width=True)
+
+# LINE CHART: Price vs Units Sold
+st.write("### Price vs Units Sold")
+line_chart = (
+    alt.Chart(df)
+    .mark_line(point=True)
+    .encode(
+        x=alt.X("price:Q", title="Item Price"),
+        y=alt.Y("units_sold:Q", title="Units Sold"),
+        tooltip=["item_name", "price", "units_sold"]
+    )
+)
+st.altair_chart(line_chart, use_container_width=True)
+
+# SCATTER PLOT: Price vs Cost Price with Units Sold
+st.write("### Price vs Cost Price with Units Sold")
+scatter_plot = (
+    alt.Chart(df)
+    .mark_circle(size=100)
+    .encode(
+        x="cost_price:Q",
+        y="price:Q",
+        size="units_sold:Q",
+        color="item_name:N",
+        tooltip=["item_name", "price", "cost_price", "units_sold"]
+    )
+)
+st.altair_chart(scatter_plot, use_container_width=True)
+
+# HEATMAP: Correlation between numerical columns
+st.write("### Correlation Heatmap")
+correlation_data = df.drop(columns=["id", "reorder_point", "description"]).corr()
+st.write(correlation_data.style.background_gradient(cmap="coolwarm"))
+
+# BOX PLOT: Distribution of Units Left
+st.write("### Units Left Distribution")
+box_plot = (
+    alt.Chart(df)
+    .mark_boxplot()
+    .encode(
+        x=alt.X("item_name:N", title="Item Name"),
+        y=alt.Y("units_left:Q", title="Units Left"),
+        color=alt.Color("item_name:N", legend=None)
+    )
+)
+st.altair_chart(box_plot, use_container_width=True)
+
+# TREEMAP: Units Sold Contribution
+st.write("### Units Sold Contribution")
+treemap_data = df[["item_name", "units_sold"]].copy()
+treemap_data["units_sold_size"] = treemap_data["units_sold"]
+treemap_chart = (
+    alt.Chart(treemap_data)
+    .mark_rect()
+    .encode(
+        x="item_name:N",
+        y="units_sold_size:Q",
+        color="item_name:N",
+        tooltip=["item_name", "units_sold"]
+    )
+)
+st.altair_chart(treemap_chart, use_container_width=True)
+
+# STACKED BAR CHART: Units Sold vs Units Left
+st.write("### Units Sold vs Units Left")
+stacked_chart = (
+    alt.Chart(df.melt(id_vars=["item_name"], value_vars=["units_sold", "units_left"]))
+    .mark_bar()
+    .encode(
+        x="value:Q",
+        y=alt.Y("item_name:N", title="Item Name").sort("-x"),
+        color="variable:N",
+        tooltip=["item_name", "variable", "value"]
+    )
+)
+st.altair_chart(stacked_chart, use_container_width=True)
+
