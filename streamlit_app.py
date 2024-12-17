@@ -405,3 +405,24 @@ st.altair_chart(
     ),
     use_container_width=True,
 )
+
+
+st.subheader("Inventory Balance: Units Sold vs Units Left", divider="blue")
+
+chart = (
+    alt.Chart(df)
+    .transform_fold(
+        ["units_sold", "units_left"],
+        as_=["Type", "Count"]
+    )
+    .mark_bar()
+    .encode(
+        x="Count:Q",
+        y=alt.Y("item_name:N", title="Product").sort("-x"),
+        color="Type:N",
+        tooltip=["item_name", "units_sold", "units_left"]
+    )
+)
+
+st.altair_chart(chart, use_container_width=True)
+
