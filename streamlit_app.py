@@ -173,7 +173,7 @@ def update_data(conn, df, changes):
 # Set the title that appears at the top of the page.
 """
 # :shopping_bags:KGI-AVANI 
-
+# 🛒 KGI-AVANI
 
 
 **Welcome to KGI-Corner Store's Intelligent Inventory Tracker!**
