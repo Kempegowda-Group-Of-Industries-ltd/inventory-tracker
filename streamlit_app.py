@@ -190,10 +190,12 @@ Optimize your store operations with AVANI's intelligent solutions!
 """
 💎 NIDHI: Next-Generation Intelligent Analytics
 st.write("Unlock the treasure of insights from your inventory and supply chain by uploading your data.
+
+
+"""
 url = "https://nidhii.streamlit.app/"
 st.markdown(f"[Access NIDHI]({url})", unsafe_allow_html=True)
 
-"""
 
 st.info(
     """
