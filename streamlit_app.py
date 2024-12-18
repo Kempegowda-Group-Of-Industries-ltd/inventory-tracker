@@ -171,7 +171,7 @@ def update_data(conn, df, changes):
 
 # Set the title that appears at the top of the page.
 """
-# :shopping_bags: Inventory tracker
+# :secure: AVANI 
 
 **Welcome to KGI-Corner Store's intentory tracker!**
 This page reads and writes directly from/to our inventory database.
