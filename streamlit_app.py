@@ -172,7 +172,7 @@ def update_data(conn, df, changes):
 # This page reads and writes directly from/to our inventory database.
 # Set the title that appears at the top of the page.
 """
-# :shopping_bags: AVANI 
+# :shopping_bags:KGI - AVANI 
 
 
 
