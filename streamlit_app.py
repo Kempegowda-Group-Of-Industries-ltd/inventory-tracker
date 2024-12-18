@@ -171,10 +171,13 @@ def update_data(conn, df, changes):
 # **Welcome to KGI-Corner Store's intentory tracker!**
 # This page reads and writes directly from/to our inventory database.
 # Set the title that appears at the top of the page.
-"""
 # :shopping_bags:KGI-AVANI 
-# 🛒 KGI-AVANI
+"""
 
+# 🛒 KGI-AVANI
+""
+""
+""
 
 **Welcome to KGI-Corner Store's Intelligent Inventory Tracker!**
 Powered by AVANI (Advanced Visual Analytics for Networked Insights), this tool seamlessly connects to our inventory database to provide:
