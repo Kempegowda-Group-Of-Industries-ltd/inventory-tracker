@@ -175,9 +175,6 @@ def update_data(conn, df, changes):
 """
 
 # 🛒 KGI-AVANI
-""
-""
-""
 
 **Welcome to KGI-Corner Store's Intelligent Inventory Tracker!**
 Powered by AVANI (Advanced Visual Analytics for Networked Insights), this tool seamlessly connects to our inventory database to provide:
