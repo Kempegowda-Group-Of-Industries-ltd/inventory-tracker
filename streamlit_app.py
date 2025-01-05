@@ -194,6 +194,9 @@ Unlock the treasure of insights from your inventory and supply chain by uploadin
 url = "https://nidhii.streamlit.app/"
 st.markdown(f"[Access NIDHI]({url})", unsafe_allow_html=True)
 
+"""
+💎 KGI-INDUSTRY 5.0 APPS 
+"""
 url = "https://finacle.streamlit.app/"
 st.markdown(f"[Access Finacle ]({url})", unsafe_allow_html=True)
 
