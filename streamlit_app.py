@@ -194,6 +194,27 @@ Unlock the treasure of insights from your inventory and supply chain by uploadin
 url = "https://nidhii.streamlit.app/"
 st.markdown(f"[Access NIDHI]({url})", unsafe_allow_html=True)
 
+url = "https://finacle.streamlit.app/"
+st.markdown(f"[Access Finacle ]({url})", unsafe_allow_html=True)
+
+url = "https://kgi-financecalculator.streamlit.app/"
+st.markdown(f"[Access CALCULATOR ]({url})", unsafe_allow_html=True)
+
+url = "https://kgi-manager.streamlit.app/"
+st.markdown(f"[Access TASK MANAGER ]({url})", unsafe_allow_html=True)
+
+url = "https://kgi-stock-market-tracker.streamlit.app/"
+st.markdown(f"[Access STOCK MARKET ]({url})", unsafe_allow_html=True)
+
+url = "https://multilocation.streamlit.app/"
+st.markdown(f"[Access MULTILOACTION]({url})", unsafe_allow_html=True)
+
+url = "https://sankalp.streamlit.app/"
+st.markdown(f"[Access SANKALP]({url})", unsafe_allow_html=True)
+
+url = "https://sandra.streamlit.app/"
+st.markdown(f"[Access Sandra]({url})", unsafe_allow_html=True)
+
 
 st.info(
     """
