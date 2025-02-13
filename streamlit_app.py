@@ -33,7 +33,7 @@ def connect_db():
 def initialize_data(conn):
     """Initializes the inventory table with some data."""
     cursor = conn.cursor()
-st.write(f"Price: ₹{price:.2f}")
+   st.write(f"price: ₹{price:.2f}")
 
     cursor.execute(
         """
