@@ -168,6 +168,7 @@ def update_data(conn, df, changes):
     conn.commit()
 
 
+
 # -----------------------------------------------------------------------------
 # Draw the actual page, starting with the inventory table.
 # **Welcome to KGI-Corner Store's intentory tracker!**
