@@ -247,8 +247,8 @@ edited_df = st.data_editor(
     num_rows="dynamic",  # Allow appending/deleting rows.
     column_config={
         # Show dollar sign before price columns.
-        "price": st.column_config.NumberColumn(format="$%.2f"),
-        "cost_price": st.column_config.NumberColumn(format="$%.2f"),
+        "price": st.column_config.NumberColumn(format="₹%.2f"),
+        "cost_price": st.column_config.NumberColumn(format="₹%.2f"),
     },
     key="inventory_table",
 )
