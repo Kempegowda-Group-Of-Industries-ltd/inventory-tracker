@@ -174,52 +174,52 @@ def update_data(conn, df, changes):
 # **Welcome to KGI-Corner Store's intentory tracker!**
 # This page reads and writes directly from/to our inventory database.
 # Set the title that appears at the top of the page.
-# :shopping_bags:KGI-AVANI 
+# :shopping_bags:KGI-AVANI  **Welcome to KGI-Corner Store's Intelligent Inventory Tracker!** Powered by AVANI (Advanced Visual Analytics for Networked Insights),
 """
 
-# 🛒 KGI-AVANI
+# 🛒 SVVS STORES 
 
-**Welcome to KGI-Corner Store's Intelligent Inventory Tracker!**
-Powered by AVANI (Advanced Visual Analytics for Networked Insights), this tool seamlessly connects to our inventory database to provide:
+
+ This tool seamlessly connects to our inventory database to provide:
 
 📊 Real-Time Updates
 🔍 Advanced Analytics
 🚀 Effortless Inventory Management
 
-Optimize your store operations with AVANI's intelligent solutions!
+Optimize your store operations with SVVS-intelligent solution!
 
 
 """
-"""
-💎 NIDHI: Next-Generation Intelligent Analytics
-Unlock the treasure of insights from your inventory and supply chain by uploading your data.
-"""
-url = "https://nidhii.streamlit.app/"
-st.markdown(f"[Access NIDHI]({url})", unsafe_allow_html=True)
+# """
+#💎 NIDHI: Next-Generation Intelligent Analytics
+#Unlock the treasure of insights from your inventory and supply chain by uploading your data.
+#"""
+#url = "https://nidhii.streamlit.app/"
+#st.markdown(f"[Access NIDHI]({url})", unsafe_allow_html=True)
 
-"""
-💎 KGI-INDUSTRY 5.0 APPS 
-"""
-url = "https://finacle.streamlit.app/"
-st.markdown(f"[Access Fincal ]({url})", unsafe_allow_html=True)
+#"""
+#💎 KGI-INDUSTRY 5.0 APPS 
+#"""
+#url = "https://finacle.streamlit.app/"
+#st.markdown(f"[Access Fincal ]({url})", unsafe_allow_html=True)
 
-url = "https://kgi-financecalculator.streamlit.app/"
-st.markdown(f"[Access CALCULATOR ]({url})", unsafe_allow_html=True)
+#url = "https://kgi-financecalculator.streamlit.app/"
+#st.markdown(f"[Access CALCULATOR ]({url})", unsafe_allow_html=True)
 
-url = "https://kgi-manager.streamlit.app/"
-st.markdown(f"[Access TASK MANAGER ]({url})", unsafe_allow_html=True)
+#url = "https://kgi-manager.streamlit.app/"
+#st.markdown(f"[Access TASK MANAGER ]({url})", unsafe_allow_html=True)
 
-url = "https://kgi-stock-market-tracker.streamlit.app/"
-st.markdown(f"[Access STOCK MARKET ]({url})", unsafe_allow_html=True)
+#url = "https://kgi-stock-market-tracker.streamlit.app/"
+#st.markdown(f"[Access STOCK MARKET ]({url})", unsafe_allow_html=True)
 
-url = "https://multilocation.streamlit.app/"
-st.markdown(f"[Access MULTILOACTION]({url})", unsafe_allow_html=True)
+#url = "https://multilocation.streamlit.app/"
+#st.markdown(f"[Access MULTILOACTION]({url})", unsafe_allow_html=True)
 
-url = "https://sankalp.streamlit.app/"
-st.markdown(f"[Access SANKALP]({url})", unsafe_allow_html=True)
+#url = "https://sankalp.streamlit.app/"
+#st.markdown(f"[Access SANKALP]({url})", unsafe_allow_html=True)
 
-url = "https://sandra.streamlit.app/"
-st.markdown(f"[Access Sandra]({url})", unsafe_allow_html=True)
+#url = "https://sandra.streamlit.app/"
+#st.markdown(f"[Access Sandra]({url})", unsafe_allow_html=True)
 
 
 st.info(
