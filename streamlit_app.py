@@ -388,18 +388,6 @@ st.altair_chart(scatter_plot, use_container_width=True)
 
 
 
-# BOX PLOT: Distribution of Units Left
-st.write("### Units Left Distribution")
-box_plot = (
-    alt.Chart(df)
-    .mark_boxplot()
-    .encode(
-        x=alt.X("item_name:N", title="Item Name"),
-        y=alt.Y("units_left:Q", title="Units Left"),
-        color=alt.Color("item_name:N", legend=None)
-    )
-)
-st.altair_chart(box_plot, use_container_width=True)
 
 # TREEMAP: Units Sold Contribution
 st.write("### Units Sold Contribution")
@@ -417,19 +405,7 @@ treemap_chart = (
 )
 st.altair_chart(treemap_chart, use_container_width=True)
 
-# STACKED BAR CHART: Units Sold vs Units Left
-st.write("### Units Sold vs Units Left")
-stacked_chart = (
-    alt.Chart(df.melt(id_vars=["item_name"], value_vars=["units_sold", "units_left"]))
-    .mark_bar()
-    .encode(
-        x="value:Q",
-        y=alt.Y("item_name:N", title="Item Name").sort("-x"),
-        color="variable:N",
-        tooltip=["item_name", "variable", "value"]
-    )
-)
-st.altair_chart(stacked_chart, use_container_width=True)
+
 
 # Calculate revenue and profit for each item
 df["revenue"] = df["units_sold"] * df["price"]
