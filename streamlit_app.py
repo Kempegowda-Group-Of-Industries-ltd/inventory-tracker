@@ -56,37 +56,42 @@ def initialize_data(conn):
         INSERT INTO inventory
             (item_name, price, units_sold, units_left, cost_price, reorder_point, description)
         VALUES
-            -- Beverages
-            ('Bottled Water (500ml)',10, 115, 15, 0.80, 16, 'Hydrating bottled water'),
-            ('Soda (300ml)', 20, 93, 8, 1.20, 10, 'Carbonated soft drink'),
-            ('Energy Drink (250ml)', 25, 12, 18, 1.50, 8, 'High-caffeine energy drink'),
-            ('Coffee (hot, large)', 30, 11, 14, 1.80, 5, 'Freshly brewed hot coffee'),
-            ('Juice (200ml)', 50, 11, 9, 1.30, 5, 'Fruit juice blend'),
+           -- Beverages  
+('Bisleri Water (500ml)', 50, 115, 15, 20.00, 5, 'Pure mineral water'),  
+('Thums Up (300ml)', 40, 93, 8, 35.00, 10, 'Strong carbonated cola drink'),  
+('Red Bull (250ml)', 30, 12, 18, 110.00, 8, 'Energy-boosting drink'),  
+('Nescafe Coffee (hot, large)', 25, 11, 14, 60.00, 5, 'Freshly brewed instant coffee'),  
+('Real Fruit Juice (200ml)', 45, 11, 9, 35.00, 5, 'Healthy mixed fruit juice'),  
+('Masala Chai (Cup)', 100, 11, 12, 20.00, 5, 'Authentic Indian spiced tea'),  
 
-            -- Snacks
-            ('Potato Chips (small)', 25, 34, 16, 1.00, 10, 'Salted and crispy potato chips'),
-            ('Candy Bar', 5, 6, 19, 0.80, 15, 'Chocolate and candy bar'),
-            ('Granola Bar',50, 3, 12, 1.30, 8, 'Healthy and nutritious granola bar'),
-            ('Cookies (pack of 6)',60, 8, 8, 1.50, 5, 'Soft and chewy cookies'),
-            ('Fruit Snack Pack', 150, 5, 10, 1.00, 8, 'Assortment of dried fruits and nuts'),
+-- Snacks  
+('Lays Chips (small)', 50, 34, 16, 20.00, 10, 'Crispy salted potato chips'),  
+('Dairy Milk Chocolate', 35, 6, 19, 45.00, 5, 'Milk chocolate bar'),  
+('Britannia Nutri Bar', 40, 3, 12, 30.00, 8, 'Healthy granola bar with nuts'),  
+('Parle-G Biscuits (pack)', 80, 8, 8, 10.00, 5, 'Classic glucose biscuits'),  
+('Haldiram’s Namkeen (small)', 60, 5, 10, 40.00, 8, 'Spicy and crunchy Indian snack'),  
 
-            -- Personal Care
-            ('Toothpaste',30, 1, 9, 2.00, 5, 'Minty toothpaste for oral hygiene'),
-            ('Hand Sanitizer (small)',99, 2, 13, 1.20, 8, 'Small sanitizer bottle for on-the-go'),
-            ('Pain Relievers (pack)',299, 1, 5, 3.00, 3, 'Over-the-counter pain relief medication'),
-            ('Bandages (box)',199, 0, 10, 2.00, 5, 'Box of adhesive bandages for minor cuts'),
-            ('Sunscreen (small)',99, 6, 5, 3.50, 3, 'Small bottle of sunscreen for sun protection'),
+-- Personal Care  
+('Colgate Toothpaste (small)', 20, 1, 9, 55.00, 5, 'Fluoride toothpaste for strong teeth'),  
+('Dettol Hand Sanitizer (small)', 30, 2, 13, 50.00, 8, 'Antibacterial sanitizer for hygiene'),  
+('Crocin Pain Reliever (strip)', 40, 1, 5, 35.00, 3, 'Over-the-counter paracetamol tablet'),  
+('Band-Aid Strips (box)', 25, 0, 10, 45.00, 5, 'Adhesive bandages for wounds'),  
+('Himalaya Sunscreen (small)', 15, 6, 5, 120.00, 3, 'Herbal sunscreen lotion'),  
+('Mediker Anti-Lice Shampoo', 10, 6, 8, 75.00, 5, 'Effective shampoo for lice removal'),  
 
-            -- Household
-            ('Batteries (AA, pack of 4)',80, 1, 5, 2.50, 3, 'Pack of 4 AA batteries'),
-            ('Light Bulbs (LED, 2-pack)',50, 3, 3, 4.00, 2, 'Energy-efficient LED light bulbs'),
-            ('Trash Bags (small, 10-pack)',30, 5, 10, 2.00, 5, 'Small trash bags for everyday use'),
-            ('Paper Towels (single roll)',50, 3, 8, 1.50, 5, 'Single roll of paper towels'),
-            ('Multi-Surface Cleaner',359, 2, 5, 3.00, 3, 'All-purpose cleaning spray'),
+-- Household  
+('Eveready AA Batteries (4-pack)', 30, 1, 5, 90.00, 3, 'Long-lasting alkaline batteries'),  
+('Syska LED Bulb (9W, 2-pack)', 20, 3, 3, 220.00, 2, 'Energy-efficient LED bulbs'),  
+('Garbage Bags (small, 10-pack)', 25, 5, 10, 80.00, 5, 'Disposable trash bags for home use'),  
+('Origami Paper Towels (single roll)', 40, 3, 8, 45.00, 5, 'Absorbent paper towels'),  
+('Harpic Toilet Cleaner (500ml)', 35, 2, 5, 95.00, 3, 'Powerful toilet cleaning liquid'),  
 
-            -- Others
-            ('Lottery Tickets',150, 17, 20, 1.50, 10, 'Assorted lottery tickets'),
-            ('Newspaper',7, 22, 20, 1.00, 5, 'Daily newspaper')
+-- Others  
+('Lottery Tickets', 100, 17, 20, 50.00, 10, 'Government-approved lottery tickets'),  
+('The Times of India Newspaper', 60, 22, 20, 10.00, 5, 'Daily national newspaper'),  
+('Ball Pens (5-pack)', 70, 1, 8, 50.00, 5, 'Smooth writing ball pens'),  
+('Natraj Pencils (10-pack)', 60, 1, 8, 30.00, 5, 'High-quality HB pencils'),  
+('Classmate Notebook (200 pages)', 50, 1, 8, 60.00, 5, 'Spiral-bound ruled notebook');
         """
     )
     conn.commit()
