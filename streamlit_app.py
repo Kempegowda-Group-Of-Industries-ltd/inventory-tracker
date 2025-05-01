@@ -27,6 +27,9 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 import json
+import streamlit as st
+import requests
+from streamlit_lottie import st_lottie
 
 # Load Lottie animation
 def load_lottieurl(url: str):
@@ -132,47 +135,15 @@ with col2:
 with col3:
     st.markdown("<div class='card'><h3>🚨 Alerts</h3><p>Get alerts for low or critical stock.</p></div>", unsafe_allow_html=True)
 
-# Optional logout
+# Single Logout Button
 st.sidebar.markdown("---")
 if st.sidebar.button("🚪 Logout", key="logout_button"):
     st.session_state.authenticated = False
     st.experimental_rerun()  # Rerun to show the login page
 
-# Some logic or user interaction
-if st.button("Rerun", key="rerun_button"):
-    st.experimental_rerun()
-
-# Optional: Add the logout button at the top or sidebar
-if st.sidebar.button("🚪 Logout", key="logout_sidebar"):
-    st.session_state.authenticated = False
-    st.experimental_rerun()
-    
 # Simulate an authentication state (use this as a flag to track login status)
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
-
-# Sidebar Logout Button
-st.sidebar.markdown("---")
-if st.sidebar.button("🚪 Logout", key="sidebar_logout_button"):
-    # Set authentication to False
-    st.session_state.authenticated = False
-    # Trigger rerun to redirect to login page
-    st.experimental_rerun()
-
-# Login page logic
-if not st.session_state.authenticated:
-    # This is the login page (you can customize this as needed)
-    st.title("Admin Login")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-
-    # Sample credentials check (you can modify this as per your requirements)
-    if st.button("Login", key="login_button"):
-        if username == "admin" and password == "password":  # Change to your credentials
-            st.session_state.authenticated = True
-            st.experimental_rerun()
-        else:
-            st.error("Invalid credentials. Please try again.")
 
 # The main app page (accessible only if authenticated)
 if st.session_state.authenticated:
@@ -180,12 +151,6 @@ if st.session_state.authenticated:
     st.write("This is where your app content goes.")
     
     # Add your application logic here
-
-    # Optional: Add the logout button at the top or sidebar
-    st.sidebar.markdown("---")
-    if st.sidebar.button("🚪 Logout", key="logout_final"):
-        st.session_state.authenticated = False
-        st.experimental_rerun()
 
 
 
