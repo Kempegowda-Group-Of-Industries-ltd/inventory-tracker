@@ -193,10 +193,10 @@ if st.session_state.authenticated:
     # Add your application logic here
 
     # Optional: Add the logout button at the top or sidebar
-    st.sidebar.markdown("---")
-    if st.sidebar.button("🚪 Logout", key="logout_final"):
-        st.session_state.authenticated = False
-        st.experimental_rerun()
+   # st.sidebar.markdown("---")
+   # if st.sidebar.button("🚪 Logout", key="logout_final"):
+   #     st.session_state.authenticated = False
+  #      st.experimental_rerun()
 
 
 # -----------------------------------------------------------------------------
