@@ -147,7 +147,7 @@ with col3:
 st.sidebar.markdown("---")
 if st.sidebar.button("🚪 Logout", key="logout_button"):
     st.session_state.authenticated = False
-    st.experimental_rerun()  # Rerun to show the login page
+   # st.experimental_rerun()  # Rerun to show the login page
 
 # Some logic or user interaction
 if st.button("Rerun", key="rerun_button"):
