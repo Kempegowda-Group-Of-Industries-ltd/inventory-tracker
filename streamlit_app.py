@@ -16,28 +16,66 @@ st.set_page_config(
 
 
 
+import streamlit as st
+
+# ✅ Must be the first Streamlit command
+st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
+
+# 🔒 Login Function
 def login():
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
+        st.session_state.username = ""
 
     if not st.session_state.authenticated:
-        st.title("🔐 Admin Login")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
-        login_btn = st.button("Login")
-
-        if login_btn:
-            if username == "admin" and password == "Suhas@123":
-                st.session_state.authenticated = True
-                st.success("Login successful! 🎉")
-            else:
-                st.error("Invalid username or password 🚫")
+        st.markdown("<h1 style='text-align: center;'>🔐 Admin Login</h1>", unsafe_allow_html=True)
+        with st.form("login_form", clear_on_submit=True):
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+            submitted = st.form_submit_button("Login")
+            if submitted:
+                if username == "admin" and password == "Suhas@123":
+                    st.session_state.authenticated = True
+                    st.session_state.username = username
+                    st.success("Login successful! Redirecting...")
+                else:
+                    st.error("Invalid username or password 🚫")
 
     return st.session_state.authenticated
 
-# Run the login check
+# 🔒 Block until login
 if not login():
     st.stop()
+
+# 🎉 Main Dashboard (only visible after login)
+st.markdown("""
+    <style>
+        .main-title {
+            font-size: 48px;
+            color: #4CAF50;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #888;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown("<div class='main-title'>📦 Inventory Tracker Dashboard</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Welcome, {}! Manage your inventory efficiently.</div>".format(st.session_state.username), unsafe_allow_html=True)
+
+# ✅ Your app content starts here
+st.write("🔍 Use the sidebar to navigate and manage inventory items.")
+
+# 🔓 Optional logout
+if st.button("Logout"):
+    st.session_state.authenticated = False
+    st.experimental_rerun()
+
 
 
 
