@@ -154,21 +154,21 @@ if st.button("Rerun", key="rerun_button"):
     st.experimental_rerun()
 
 # Optional: Add the logout button at the top or sidebar
-if st.sidebar.button("🚪 Logout", key="logout_sidebar"):
-    st.session_state.authenticated = False
-    st.experimental_rerun()
+#if st.sidebar.button("🚪 Logout", key="logout_sidebar"):
+   # st.session_state.authenticated = False
+   # st.experimental_rerun()
     
 # Simulate an authentication state (use this as a flag to track login status)
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 # Sidebar Logout Button
-st.sidebar.markdown("---")
-if st.sidebar.button("🚪 Logout", key="sidebar_logout_button"):
+#st.sidebar.markdown("---")
+#if st.sidebar.button("🚪 Logout", key="sidebar_logout_button"):
     # Set authentication to False
-    st.session_state.authenticated = False
+   # st.session_state.authenticated = False
     # Trigger rerun to redirect to login page
-    st.experimental_rerun()
+    #st.experimental_rerun()
 
 # Login page logic
 if not st.session_state.authenticated:
