@@ -8,32 +8,29 @@ import pandas as pd
 
 import streamlit as st
 
-# --- Simple authentication ---
 def login():
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
 
     if not st.session_state.authenticated:
-        with st.form("Login"):
-            st.subheader("🔐 Admin Login")
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
-            submit = st.form_submit_button("Login")
+        st.title("🔐 Admin Login")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        login_btn = st.button("Login")
 
-            if submit:
-                if username == "admin" and password == "Suhas@123":
-                    st.session_state.authenticated = True
-                    st.success("Login successful! 🎉")
-                    st.experimental_rerun()
-                else:
-                    st.error("Invalid username or password 🚫")
-        return False
-    else:
-        return True
+        if login_btn:
+            if username == "admin" and password == "Suhas@123":
+                st.session_state.authenticated = True
+                st.success("Login successful! 🎉")
+            else:
+                st.error("Invalid username or password 🚫")
 
-# Check login status before loading the rest of the app
+    return st.session_state.authenticated
+
+# Run the login check
 if not login():
     st.stop()
+
 
 
 
