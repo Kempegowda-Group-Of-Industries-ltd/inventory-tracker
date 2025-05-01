@@ -134,6 +134,51 @@ st.sidebar.markdown("---")
 if st.sidebar.button("🚪 Logout"):
     st.session_state.authenticated = False
     st.experimental_rerun()
+# Some logic or user interaction
+if st.button("Rerun"):
+    st.experimental_rerun()
+
+import streamlit as st
+
+# Simulate an authentication state (use this as a flag to track login status)
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+# Sidebar Logout Button
+st.sidebar.markdown("---")
+if st.sidebar.button("🚪 Logout"):
+    # Set authentication to False
+    st.session_state.authenticated = False
+    # Trigger rerun to redirect to login page
+    st.experimental_rerun()
+
+# Login page logic
+if not st.session_state.authenticated:
+    # This is the login page (you can customize this as needed)
+    st.title("Admin Login")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    # Sample credentials check (you can modify this as per your requirements)
+    if st.button("Login"):
+        if username == "admin" and password == "password":  # Change to your credentials
+            st.session_state.authenticated = True
+            st.experimental_rerun()
+        else:
+            st.error("Invalid credentials. Please try again.")
+
+# The main app page (accessible only if authenticated)
+if st.session_state.authenticated:
+    st.title("Welcome to the Admin Dashboard!")
+    st.write("This is where your app content goes.")
+    
+    # Add your application logic here
+
+    # Optional: Add the logout button at the top or sidebar
+    st.sidebar.markdown("---")
+    if st.sidebar.button("🚪 Logout"):
+        st.session_state.authenticated = False
+        st.experimental_rerun()
 
 
 
