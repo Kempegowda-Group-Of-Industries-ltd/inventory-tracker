@@ -550,6 +550,43 @@ treemap_chart = (
 )
 st.altair_chart(treemap_chart, use_container_width=True)
 
+# Filter out rows with negative profit
+df_filtered = df[df["profit"] >= 0]
+
+# Calculate revenue and profit for each item
+df_filtered["revenue"] = df_filtered["units_sold"] * df_filtered["price"]
+df_filtered["profit"] = df_filtered["units_sold"] * (df_filtered["price"] - df_filtered["cost_price"])
+
+# Plot the chart
+st.subheader("Revenue vs Profit", divider="green")
+st.altair_chart(
+    alt.Chart(df_filtered)
+    .mark_bar()
+    .encode(
+        y=alt.Y("item_name", title="Product").sort("-x"),
+        x="revenue",
+        color=alt.value("steelblue"),
+        tooltip=["item_name", "revenue", "profit"]
+    ) + 
+    alt.Chart(df_filtered)
+    .mark_bar()
+    .encode(
+        y="item_name",
+        x="profit",
+        color=alt.value("orange"),
+        tooltip=["item_name", "revenue", "profit"]
+    ),
+    use_container_width=True,
+)
+
+
+
+
+
+
+
+
+
 
 
 # Calculate revenue and profit for each item
