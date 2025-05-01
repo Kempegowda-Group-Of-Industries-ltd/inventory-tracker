@@ -242,7 +242,6 @@ def initialize_data(conn):
             (item_name, price, units_sold, units_left, cost_price, reorder_point, description)
         VALUES
            -- Beverages  
-
     ('Bisleri Water (500ml)', 50, 115, 15, 20.00, 5, 'Pure mineral water'),
     ('Thums Up (300ml)', 40, 93, 8, 35.00, 10, 'Strong carbonated cola drink'),
     ('Red Bull (250ml)', 30, 12, 18, 120.00, 8, 'Energy-boosting drink'),
@@ -277,11 +276,7 @@ def initialize_data(conn):
     ('The Times of India Newspaper', 60, 22, 20, 10.00, 5, 'Daily national newspaper'),
     ('Ball Pens (5-pack)', 70, 1, 8, 50.00, 5, 'Smooth writing ball pens'),
     ('Natraj Pencils (10-pack)', 60, 1, 8, 30.00, 5, 'High-quality HB pencils'),
-    ('Classmate Notebook (200 pages)', 50, 1, 8, 60.00, 5, 'Spiral-bound ruled notebook');
-
-
-
-        
+    ('Classmate Notebook (200 pages)', 50, 1, 8, 60.00, 5, 'Spiral-bound ruled notebook');        
         """
     )
     conn.commit()
