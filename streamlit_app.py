@@ -20,61 +20,123 @@ st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wid
 import streamlit as st
 
 
+import streamlit as st
+import requests
+from streamlit_lottie import st_lottie
 
-# 🔒 Login Function
+# Page config
+st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
+
+# Load Lottie animation
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+inventory_lottie = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_ydo1amjm.json")  # inventory animation
+
+# Theme Toggle (Light/Dark Mode)
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
+
+mode = st.sidebar.radio("🎨 Select Theme", ("Light", "Dark"))
+st.session_state.dark_mode = mode == "Dark"
+
+# Background and Text Theme
+light_css = """
+<style>
+body {
+    background: linear-gradient(to right, #f9f9f9, #e0eafc);
+}
+h1, h2, h3, p, label {
+    color: #111 !important;
+}
+</style>
+"""
+
+dark_css = """
+<style>
+body {
+    background: linear-gradient(to right, #232526, #414345);
+}
+h1, h2, h3, p, label {
+    color: #eee !important;
+}
+</style>
+"""
+
+st.markdown(dark_css if st.session_state.dark_mode else light_css, unsafe_allow_html=True)
+
+# Login function
 def login():
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
         st.session_state.username = ""
 
     if not st.session_state.authenticated:
-        st.markdown("<h1 style='text-align: center;'>🔐 Admin Login</h1>", unsafe_allow_html=True)
-        with st.form("login_form", clear_on_submit=True):
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
-            submitted = st.form_submit_button("Login")
-            if submitted:
-                if username == "admin" and password == "Suhas@123":
-                    st.session_state.authenticated = True
-                    st.session_state.username = username
-                    st.success("Login successful! Redirecting...")
-                else:
-                    st.error("Invalid username or password 🚫")
-
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            st_lottie(inventory_lottie, height=250)
+        with col2:
+            st.markdown("<h2 style='text-align:center;'>🔐 Admin Login</h2>", unsafe_allow_html=True)
+            with st.form("login_form", clear_on_submit=True):
+                username = st.text_input("Username")
+                password = st.text_input("Password", type="password")
+                submitted = st.form_submit_button("Login")
+                if submitted:
+                    if username == "admin" and password == "Suhas@123":
+                        st.session_state.authenticated = True
+                        st.session_state.username = username
+                        st.success("Login successful! 🎉")
+                    else:
+                        st.error("Invalid username or password 🚫")
     return st.session_state.authenticated
 
-# 🔒 Block until login
+# Login gate
 if not login():
     st.stop()
 
-# 🎉 Main Dashboard (only visible after login)
-st.markdown("""
-    <style>
-        .main-title {
-            font-size: 48px;
-            color: #4CAF50;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 20px;
-            color: #888;
-        }
-    </style>
+# --- Main App Content ---
+st.markdown(f"""
+    <h1 style='text-align:center; animation: fadeIn 1.5s;'>📦 Inventory Tracker Dashboard</h1>
+    <h4 style='text-align:center; margin-bottom:30px;'>Welcome <b>{st.session_state.username}</b>! Track and manage inventory efficiently.</h4>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='main-title'>📦 Inventory Tracker Dashboard</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Welcome, {}! Manage your inventory efficiently.</div>".format(st.session_state.username), unsafe_allow_html=True)
+# Stylish card section
+st.markdown("""
+<style>
+.card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 40px rgba(0,0,0,0.15);
+}
+</style>
+""", unsafe_allow_html=True)
 
-# ✅ Your app content starts here
-st.write("🔍 Use the sidebar to navigate and manage inventory items.")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("<div class='card'><h3>➕ Add Item</h3><p>Enter and manage new inventory items.</p></div>", unsafe_allow_html=True)
+with col2:
+    st.markdown("<div class='card'><h3>📊 View Stock</h3><p>See current stock levels and trends.</p></div>", unsafe_allow_html=True)
+with col3:
+    st.markdown("<div class='card'><h3>🚨 Alerts</h3><p>Get alerts for low or critical stock.</p></div>", unsafe_allow_html=True)
 
-# 🔓 Optional logout
-if st.button("Logout"):
+# Optional logout
+st.sidebar.markdown("---")
+if st.sidebar.button("🚪 Logout"):
     st.session_state.authenticated = False
     st.experimental_rerun()
+
+
 
 
 
@@ -389,18 +451,6 @@ st.caption("NOTE: The :diamonds: location shows the reorder point.")
 ""
 
 # -----------------------------------------------------------------------------
-best_sellers = df.sort_values(by="units_sold", ascending=False).head(10)
-
-st.altair_chart(
-    alt.Chart(best_sellers)
-    .mark_bar()
-    .encode(
-        x="units_sold",
-        y=alt.Y("item_name", sort="-x"),
-        tooltip=["item_name", "units_sold"]
-    ),
-    use_container_width=True
-)
 
 
 
@@ -420,6 +470,19 @@ st.altair_chart(
         y=alt.Y("item_name").sort("-x"),
     ),
     use_container_width=True,
+)
+
+best_sellers = df.sort_values(by="units_sold", ascending=False).head(10)
+
+st.altair_chart(
+    alt.Chart(best_sellers)
+    .mark_bar()
+    .encode(
+        x="units_sold",
+        y=alt.Y("item_name", sort="-x"),
+        tooltip=["item_name", "units_sold"]
+    ),
+    use_container_width=True
 )
 
 
