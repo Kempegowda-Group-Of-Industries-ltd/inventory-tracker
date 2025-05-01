@@ -24,8 +24,7 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 
-# Page config
-st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
+
 
 # Load Lottie animation
 def load_lottieurl(url: str):
