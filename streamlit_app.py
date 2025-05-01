@@ -9,17 +9,17 @@ import pandas as pd
 import streamlit as st
 
 # Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title="AVANI",
-    page_icon=":progress:",  # This is an emoji shortcode. Could be a URL too.
-)
-
+#st.set_page_config(
+#    page_title="AVANI",
+#    page_icon=":progress:",  # This is an emoji shortcode. Could be a URL too.
+#)
+# ✅ Must be the first Streamlit command
+st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
 
 
 import streamlit as st
 
-# ✅ Must be the first Streamlit command
-st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
+
 
 # 🔒 Login Function
 def login():
