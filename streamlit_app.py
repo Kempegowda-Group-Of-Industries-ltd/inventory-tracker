@@ -8,6 +8,13 @@ import pandas as pd
 
 import streamlit as st
 
+# Set the title and favicon that appear in the Browser's tab bar.
+st.set_page_config(
+    page_title="AVANI",
+    page_icon=":progress:",  # This is an emoji shortcode. Could be a URL too.
+)
+
+
 
 def login():
     if "authenticated" not in st.session_state:
@@ -33,13 +40,6 @@ if not login():
     st.stop()
 
 
-
-
-# Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title="AVANI",
-    page_icon=":progress:",  # This is an emoji shortcode. Could be a URL too.
-)
 
 
 # -----------------------------------------------------------------------------
