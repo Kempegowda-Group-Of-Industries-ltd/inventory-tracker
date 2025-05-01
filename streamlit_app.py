@@ -29,6 +29,11 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 
+import streamlit as st
+import requests
+from streamlit_lottie import st_lottie
+import json
+
 # Load Lottie animation
 def load_lottieurl(url: str):
     r = requests.get(url)
@@ -36,13 +41,8 @@ def load_lottieurl(url: str):
         return None
     return r.json()
 
-# Define animations related to inventory
-inventory_lottie = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_ydo1amjm.json")  # inventory animation
-add_item_lottie = load_lottieurl("https://assets5.lottiefiles.com/private_files/lf30_ocjm3z1r.json")  # item adding animation
-stock_update_lottie = load_lottieurl("https://assets3.lottiefiles.com/packages/lf20_bdbmjsmj.json")  # stock update animation
-alert_lottie = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_v3w6ovt0.json")  # alert animation
-success_lottie = load_lottieurl("https://assets9.lottiefiles.com/private_files/lf30_rmpms56c.json")  # success animation
-failure_lottie = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_x5f5gtzl.json")  # failure animation
+# Inventory Animation
+inventory_lottie = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_ydo1amjm.json")
 
 # Theme Toggle (Light/Dark Mode)
 if "dark_mode" not in st.session_state:
@@ -58,7 +58,7 @@ body {
     background: linear-gradient(to right, #f9f9f9, #e0eafc);
 }
 h1, h2, h3, p, label {
-    color: #333 !important; /* Ensures better readability in Light Mode */
+    color: #111 !important;
 }
 </style>
 """
@@ -133,13 +133,10 @@ st.markdown("""
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("<div class='card'><h3>➕ Add Item</h3><p>Enter and manage new inventory items.</p></div>", unsafe_allow_html=True)
-    st_lottie(add_item_lottie, height=100)  # Item adding animation
 with col2:
     st.markdown("<div class='card'><h3>📊 View Stock</h3><p>See current stock levels and trends.</p></div>", unsafe_allow_html=True)
-    st_lottie(stock_update_lottie, height=100)  # Stock update animation
 with col3:
     st.markdown("<div class='card'><h3>🚨 Alerts</h3><p>Get alerts for low or critical stock.</p></div>", unsafe_allow_html=True)
-    st_lottie(alert_lottie, height=100)  # Alert animation
 
 # Optional logout
 st.sidebar.markdown("---")
@@ -147,18 +144,61 @@ if st.sidebar.button("🚪 Logout"):
     st.session_state.authenticated = False
     st.experimental_rerun()
 
-# Logic or user interaction after login
+# Some logic or user interaction
 if st.button("Rerun"):
     st.experimental_rerun()
 
-# Success and Failure Animations based on User Actions
-if st.button("Add Item Successfully"):
-    st_lottie(success_lottie, height=200)  # Success animation on successful action
+# Optional: Add the logout button at the top or sidebar
+if st.sidebar.button("🚪 Logout"):
+    st.session_state.authenticated = False
+    st.experimental_rerun()
 
-if st.button("Fail to Add Item"):
-    st_lottie(failure_lottie, height=200)  # Failure animation on error
+# Logout logic at the top or sidebar
+if "authenticated" in st.session_state and st.session_state.authenticated:
+    st.sidebar.markdown("---")
+    if st.sidebar.button("Logout"):
+        st.session_state.authenticated = False
+        st.experimental_rerun()
+    
+# Simulate an authentication state (use this as a flag to track login status)
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
 
+# Sidebar Logout Button
+st.sidebar.markdown("---")
+if st.sidebar.button("🚪 Logout"):
+    # Set authentication to False
+    st.session_state.authenticated = False
+    # Trigger rerun to redirect to login page
+    st.experimental_rerun()
 
+# Login page logic
+if not st.session_state.authenticated:
+    # This is the login page (you can customize this as needed)
+    st.title("Admin Login")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    # Sample credentials check (you can modify this as per your requirements)
+    if st.button("Login"):
+        if username == "admin" and password == "password":  # Change to your credentials
+            st.session_state.authenticated = True
+            st.experimental_rerun()
+        else:
+            st.error("Invalid credentials. Please try again.")
+
+# The main app page (accessible only if authenticated)
+if st.session_state.authenticated:
+    st.title("Welcome to the Admin Dashboard!")
+    st.write("This is where your app content goes.")
+    
+    # Add your application logic here
+
+    # Optional: Add the logout button at the top or sidebar
+    st.sidebar.markdown("---")
+    if st.sidebar.button("🚪 Logout"):
+        st.session_state.authenticated = False
+        st.experimental_rerun()
 
 
 # -----------------------------------------------------------------------------
