@@ -551,11 +551,12 @@ treemap_chart = (
 st.altair_chart(treemap_chart, use_container_width=True)
 
 # Filter out rows with negative profit
-df_filtered = df[df["profit"] >= 0]
+# Ensure that 'revenue' and 'profit' columns are created before filtering
+df["revenue"] = df["units_sold"] * df["price"]
+df["profit"] = df["units_sold"] * (df["price"] - df["cost_price"])
 
-# Calculate revenue and profit for each item
-df_filtered["revenue"] = df_filtered["units_sold"] * df_filtered["price"]
-df_filtered["profit"] = df_filtered["units_sold"] * (df_filtered["price"] - df_filtered["cost_price"])
+# Filter out rows with negative profit
+df_filtered = df[df["profit"] >= 0]
 
 # Plot the chart
 st.subheader("Revenue vs Profit", divider="green")
@@ -578,7 +579,6 @@ st.altair_chart(
     ),
     use_container_width=True,
 )
-
 
 
 
