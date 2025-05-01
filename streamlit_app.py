@@ -23,12 +23,6 @@ import streamlit as st
 import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
-
-
-import streamlit as st
-import requests
-from streamlit_lottie import st_lottie
-
 import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
@@ -140,25 +134,18 @@ with col3:
 
 # Optional logout
 st.sidebar.markdown("---")
-if st.sidebar.button("🚪 Logout"):
+if st.sidebar.button("🚪 Logout", key="logout_button"):
     st.session_state.authenticated = False
-    st.experimental_rerun()
+    st.experimental_rerun()  # Rerun to show the login page
 
 # Some logic or user interaction
-if st.button("Rerun"):
+if st.button("Rerun", key="rerun_button"):
     st.experimental_rerun()
 
 # Optional: Add the logout button at the top or sidebar
-if st.sidebar.button("🚪 Logout"):
+if st.sidebar.button("🚪 Logout", key="logout_sidebar"):
     st.session_state.authenticated = False
     st.experimental_rerun()
-
-# Logout logic at the top or sidebar
-if "authenticated" in st.session_state and st.session_state.authenticated:
-    st.sidebar.markdown("---")
-    if st.sidebar.button("Logout"):
-        st.session_state.authenticated = False
-        st.experimental_rerun()
     
 # Simulate an authentication state (use this as a flag to track login status)
 if "authenticated" not in st.session_state:
@@ -166,7 +153,7 @@ if "authenticated" not in st.session_state:
 
 # Sidebar Logout Button
 st.sidebar.markdown("---")
-if st.sidebar.button("🚪 Logout"):
+if st.sidebar.button("🚪 Logout", key="sidebar_logout_button"):
     # Set authentication to False
     st.session_state.authenticated = False
     # Trigger rerun to redirect to login page
@@ -180,7 +167,7 @@ if not st.session_state.authenticated:
     password = st.text_input("Password", type="password")
 
     # Sample credentials check (you can modify this as per your requirements)
-    if st.button("Login"):
+    if st.button("Login", key="login_button"):
         if username == "admin" and password == "password":  # Change to your credentials
             st.session_state.authenticated = True
             st.experimental_rerun()
@@ -196,9 +183,17 @@ if st.session_state.authenticated:
 
     # Optional: Add the logout button at the top or sidebar
     st.sidebar.markdown("---")
-    if st.sidebar.button("🚪 Logout"):
+    if st.sidebar.button("🚪 Logout", key="logout_final"):
         st.session_state.authenticated = False
         st.experimental_rerun()
+
+
+
+
+
+
+
+
 
 
 # -----------------------------------------------------------------------------
