@@ -201,6 +201,29 @@ if st.session_state.authenticated:
 
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
+# --- Search and Checkout ---
+st.subheader("🔍 Search & Checkout Items")
+
+search = st.text_input("Search for an item", placeholder="e.g. Mouse")
+
+# Filter inventory based on search
+filtered_df = df[df["Item"].str.contains(search, case=False)] if search else df
+
+if not filtered_df.empty:
+    selected_item = st.selectbox("Select item to checkout", filtered_df["Item"].tolist())
+    item_row = df[df["Item"] == selected_item].iloc[0]
+    max_qty = int(item_row["Quantity"])
+    checkout_qty = st.number_input("Enter quantity to checkout", min_value=1, max_value=max_qty, value=1)
+
+    if st.button("✅ Checkout"):
+        idx = df[df["Item"] == selected_item].index[0]
+        st.session_state.inventory_data.at[idx, "Quantity"] -= checkout_qty
+        st.success(f"Checked out {checkout_qty} x {selected_item}")
+else:
+    st.warning("No matching items found.")
+
+
+
 
 
 def connect_db():
