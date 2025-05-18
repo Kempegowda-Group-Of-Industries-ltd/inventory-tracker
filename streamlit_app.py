@@ -461,34 +461,35 @@ st.button(
 # Now some cool charts
 # --- Search and Checkout ---
 # ✅ Search and Checkout
-st.subheader("🔍 Search & Checkout Items")
+#st.subheader("🔍 Search & Checkout Items")
 
-df = st.session_state.inventory_data
+#df = st.session_state.inventory_data
 
-search = st.text_input("Search for an item", placeholder="e.g. Mouse")
-filtered_df = df[df["Item"].str.contains(search, case=False)] if search else df
+#search = st.text_input("Search for an item", placeholder="e.g. Mouse")
+#filtered_df = df[df["Item"].str.contains(search, case=False)] if search else df
 
-if not filtered_df.empty:
-    selected_item = st.selectbox("Select item to checkout", filtered_df["Item"].tolist())
-    item_row = df[df["Item"] == selected_item].iloc[0]
-    max_qty = int(item_row["Quantity"])
-    checkout_qty = st.number_input("Enter quantity to checkout", min_value=1, max_value=max_qty, value=1)
+#if not filtered_df.empty:
+ #   selected_item = st.selectbox("Select item to checkout", filtered_df["Item"].tolist())
+  #  item_row = df[df["Item"] == selected_item].iloc[0]
+   # max_qty = int(item_row["Quantity"])
+   # checkout_qty = st.number_input("Enter quantity to checkout", min_value=1, max_value=max_qty, value=1)
 
-    if st.button("✅ Checkout"):
-        idx = df[df["Item"] == selected_item].index[0]
-        new_qty = max_qty - checkout_qty
+
+   # if st.button("✅ Checkout"):
+       # idx = df[df["Item"] == selected_item].index[0]
+      #  new_qty = max_qty - checkout_qty
 
         # ✅ Update local data
-        st.session_state.inventory_data.at[idx, "Quantity"] = new_qty
+     #   st.session_state.inventory_data.at[idx, "Quantity"] = new_qty
 
         # ✅ Update database
-        cursor = conn.cursor()
-        cursor.execute("UPDATE inventory SET Quantity = ? WHERE Item = ?", (new_qty, selected_item))
-        conn.commit()
+    #    cursor = conn.cursor()
+   #     cursor.execute("UPDATE inventory SET Quantity = ? WHERE Item = ?", (new_qty, selected_item))
+  #      conn.commit()
 
-        st.success(f"Checked out {checkout_qty} x {selected_item}")
-else:
-    st.warning("No matching items found.")
+ #       st.success(f"Checked out {checkout_qty} x {selected_item}")
+#else:
+#    st.warning("No matching items found.")
 
 
 
