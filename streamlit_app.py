@@ -460,12 +460,12 @@ st.button(
 # -----------------------------------------------------------------------------
 # Now some cool charts
 # --- Search and Checkout ---
+# ✅ Search and Checkout
 st.subheader("🔍 Search & Checkout Items")
+
 df = st.session_state.inventory_data
 
 search = st.text_input("Search for an item", placeholder="e.g. Mouse")
-
-# Filter inventory based on search
 filtered_df = df[df["Item"].str.contains(search, case=False)] if search else df
 
 if not filtered_df.empty:
@@ -476,11 +476,19 @@ if not filtered_df.empty:
 
     if st.button("✅ Checkout"):
         idx = df[df["Item"] == selected_item].index[0]
-        st.session_state.inventory_data.at[idx, "Quantity"] -= checkout_qty
+        new_qty = max_qty - checkout_qty
+
+        # ✅ Update local data
+        st.session_state.inventory_data.at[idx, "Quantity"] = new_qty
+
+        # ✅ Update database
+        cursor = conn.cursor()
+        cursor.execute("UPDATE inventory SET Quantity = ? WHERE Item = ?", (new_qty, selected_item))
+        conn.commit()
+
         st.success(f"Checked out {checkout_qty} x {selected_item}")
 else:
     st.warning("No matching items found.")
-
 
 
 
