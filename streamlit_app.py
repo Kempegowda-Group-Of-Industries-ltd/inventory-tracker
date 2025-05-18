@@ -274,7 +274,7 @@ def initialize_data(conn):
 ('Harpic Toilet Cleaner (500ml)', 105, 2, 5, 95.00, 3, 'Powerful toilet cleaning liquid'),  
 
 -- Others  
-('Lottery Tickets', 20, 17, 20, 50.00, 10, 'Government-approved lottery tickets'),  
+('Lottery Tickets', 20, 17, 20, 15.00, 10, 'Government-approved lottery tickets'),  
 ('The Times of India Newspaper', 12, 22, 20, 10.00, 5, 'Daily national newspaper'),  
 ('Ball Pens (5-pack)', 70, 1, 8, 50.00, 5, 'Smooth writing ball pens'),  
 ('Natraj Pencils (10-pack)', 60, 1, 8, 30.00, 5, 'High-quality HB pencils'),  
