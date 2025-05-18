@@ -246,7 +246,7 @@ def initialize_data(conn):
            -- Beverages  
 ('Bisleri Water (500ml)', 50, 115, 15, 20.00, 5, 'Pure mineral water'),  
 ('Thums Up (300ml)', 40, 93, 8, 35.00, 10, 'Strong carbonated cola drink'),  
-('Red Bull (250ml)', 1250, 12, 18, 70.00, 8, 'Energy-boosting drink'),  
+('Red Bull (250ml)', 125, 12, 18, 70.00, 8, 'Energy-boosting drink'),  
 ('Nescafe Coffee (hot, large)', 55, 11, 14, 40.00, 5, 'Freshly brewed instant coffee'),  
 ('Real Fruit Juice (200ml)', 45, 11, 9, 35.00, 5, 'Healthy mixed fruit juice'),  
 ('Masala Chai (Cup)', 100, 11, 12, 20.00, 5, 'Authentic Indian spiced tea'),  
