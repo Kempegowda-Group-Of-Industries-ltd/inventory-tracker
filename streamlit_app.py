@@ -203,6 +203,7 @@ if st.session_state.authenticated:
 # Declare some useful functions.
 # --- Search and Checkout ---
 st.subheader("🔍 Search & Checkout Items")
+df = st.session_state.inventory_data
 
 search = st.text_input("Search for an item", placeholder="e.g. Mouse")
 
