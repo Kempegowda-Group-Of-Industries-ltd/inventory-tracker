@@ -14,7 +14,7 @@ import streamlit as st
 #    page_icon=":progress:",  # This is an emoji shortcode. Could be a URL too.
 #)
 # ✅ Must be the first Streamlit command
-st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
+#st.set_page_config(page_title="Inventory Tracker", page_icon="📦", layout="wide")
 
 
 import streamlit as st
