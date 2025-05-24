@@ -288,10 +288,7 @@ def initialize_data(conn):
     conn.commit()
 
 
-import sqlite3
-import pandas as pd
-import streamlit as st
-from collections import defaultdict
+
 
 # ---------- Database Connection ----------
 #def connect_db():
@@ -325,7 +322,6 @@ load_data(conn):
     )
 
     return df
-
 
 # ---------- Update Data in Database ----------
 def update_data(df, changes):
