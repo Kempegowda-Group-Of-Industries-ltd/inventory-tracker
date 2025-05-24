@@ -297,7 +297,7 @@ def initialize_data(conn):
 
 
 # ---------- Load Data from Database ----------
-load_data(conn):
+def load_data(conn):
     """Loads the inventory data from the database."""
     cursor = conn.cursor()
 
