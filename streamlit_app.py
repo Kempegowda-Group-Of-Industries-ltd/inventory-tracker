@@ -315,7 +315,7 @@ def load_data(conn):
     return df
 
 
-def update_data(conn, df, changes)
+def update_data(conn, df, changes):
     """Updates the inventory data in the database (thread-safe)."""
     conn = connect_db()
     cursor = conn.cursor()
