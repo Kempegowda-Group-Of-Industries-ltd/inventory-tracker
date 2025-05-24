@@ -314,9 +314,7 @@ def load_data(conn):
 
     return df
 
-
-def update_data(conn, df, changes):
-    """Updates the inventory data in the database (thread-safe)."""
+def update_data(df, changes):
     conn = connect_db()
     cursor = conn.cursor()
 
@@ -367,7 +365,6 @@ def update_data(conn, df, changes):
 
     finally:
         conn.close()
-
 
 # -----------------------------------------------------------------------------
 # Draw the actual page, starting with the inventory table.
