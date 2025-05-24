@@ -189,7 +189,11 @@ if not st.session_state.authenticated:
 if st.session_state.authenticated:
     st.title("Welcome to the Admin Dashboard!")
     st.write("This is where your app content goes.")
-    
+
+
+
+url = "https://avanii.streamlit.app/"
+st.markdown(f"[Create ]({url})", unsafe_allow_html=True)
     # Add your application logic here
 
     # Optional: Add the logout button at the top or sidebar
@@ -424,6 +428,12 @@ st.info(
     And don't forget to commit your changes when you're done.
     """
 )
+
+
+
+
+
+
 
 # Connect to database and create table if needed
 conn, db_was_just_created = connect_db()
