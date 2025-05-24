@@ -294,21 +294,20 @@ import streamlit as st
 from collections import defaultdict
 
 # ---------- Database Connection ----------
-def connect_db():
-    """Connects to the SQLite database (create one if it doesn't exist)."""
-    return sqlite3.connect("inventory.db")
+#def connect_db():
+#    """Connects to the SQLite database (create one if it doesn't exist)."""
+#    return sqlite3.connect("inventory.db")
 
 
 # ---------- Load Data from Database ----------
-def load_data(conn):
+load_data(conn):
     """Loads the inventory data from the database."""
     cursor = conn.cursor()
 
     try:
         cursor.execute("SELECT * FROM inventory")
         data = cursor.fetchall()
-    except Exception as e:
-        st.error(f"Failed to load data: {e}")
+    except:
         return None
 
     df = pd.DataFrame(
