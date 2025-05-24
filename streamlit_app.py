@@ -192,8 +192,9 @@ if st.session_state.authenticated:
 
 
 
-url = "https://newinventory.streamlit.app/"
+url = "https://newinvent.streamlit.app/"
 st.markdown(f"[Create ]({url})", unsafe_allow_html=True)
+# https://newinvent.streamlit.app/
     # Add your application logic here
 
     # Optional: Add the logout button at the top or sidebar
