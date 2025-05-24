@@ -192,7 +192,7 @@ if st.session_state.authenticated:
 
 
 
-url = "https://avanii.streamlit.app/"
+url = "https://newinventory.streamlit.app/"
 st.markdown(f"[Create ]({url})", unsafe_allow_html=True)
     # Add your application logic here
 
