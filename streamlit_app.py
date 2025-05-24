@@ -458,29 +458,30 @@ if db_was_just_created:
 # Load data from database
 df = load_data(conn)
 
-# Display data with editable table
+# Editable table
 edited_df = st.data_editor(
     df,
     disabled=["id"],  # Don't allow editing the 'id' column.
     num_rows="dynamic",  # Allow appending/deleting rows.
     column_config={
-        # Show dollar sign before price columns.
         "price": st.column_config.NumberColumn(format="₹%.2f"),
         "cost_price": st.column_config.NumberColumn(format="₹%.2f"),
     },
     key="inventory_table",
 )
 
+# Check if there are any uncommitted changes
 has_uncommitted_changes = any(len(v) for v in st.session_state.inventory_table.values())
 
+# Commit button
 st.button(
     "Commit changes",
     type="primary",
     disabled=not has_uncommitted_changes,
-    # Update data in database
     on_click=update_data,
-    args=(conn, df, st.session_state.inventory_table),
+    args=(df, st.session_state.inventory_table),  # ✅ removed `conn`
 )
+
 
 
 # -----------------------------------------------------------------------------
