@@ -288,6 +288,18 @@ def initialize_data(conn):
     conn.commit()
 
 
+import sqlite3
+import pandas as pd
+import streamlit as st
+from collections import defaultdict
+
+# ---------- Database Connection ----------
+def connect_db():
+    """Connects to the SQLite database (create one if it doesn't exist)."""
+    return sqlite3.connect("inventory.db")
+
+
+# ---------- Load Data from Database ----------
 def load_data(conn):
     """Loads the inventory data from the database."""
     cursor = conn.cursor()
@@ -295,7 +307,8 @@ def load_data(conn):
     try:
         cursor.execute("SELECT * FROM inventory")
         data = cursor.fetchall()
-    except:
+    except Exception as e:
+        st.error(f"Failed to load data: {e}")
         return None
 
     df = pd.DataFrame(
@@ -314,7 +327,10 @@ def load_data(conn):
 
     return df
 
+
+# ---------- Update Data in Database ----------
 def update_data(df, changes):
+    """Updates the inventory data in the database based on changes."""
     conn = connect_db()
     cursor = conn.cursor()
 
@@ -363,8 +379,12 @@ def update_data(df, changes):
 
         conn.commit()
 
+    except Exception as e:
+        st.error(f"Failed to update data: {e}")
+
     finally:
         conn.close()
+
 
 # -----------------------------------------------------------------------------
 # Draw the actual page, starting with the inventory table.
