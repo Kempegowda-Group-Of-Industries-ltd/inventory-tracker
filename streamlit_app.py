@@ -193,7 +193,7 @@ if st.session_state.authenticated:
 
 
 url = "https://newinvent.streamlit.app/"
-st.markdown(f"[Create ]({url})", unsafe_allow_html=True)
+st.markdown(f"[Tafia ]({url})", unsafe_allow_html=True)
 # https://newinvent.streamlit.app/
     # Add your application logic here
 
